@@ -50,6 +50,11 @@
                 <artifactId>bluecove</artifactId>
                 <version>${bluecove.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.bluecove</groupId>
+                <artifactId>bluecove-gpl</artifactId>
+                <version>${bluecove.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -86,6 +91,7 @@
     <modules>
         <module>bluecove-builder</module>
         <module>bluecove-for-osgi</module>
+        <module>bluecove-bluez-fragment</module>
     </modules>
 
 
