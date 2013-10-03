@@ -31,13 +31,27 @@
     <packaging>pom</packaging>
 
     <properties>
+        <!-- Dependencies version -->
+        <bluecove.version>2.1.1-SNAPSHOT</bluecove.version>
+
         <!-- Plugins versions -->
+        <bundle.plugin.version>2.4.0</bundle.plugin.version>
+        <compiler.plugin.version>3.1</compiler.plugin.version>
         <maven-scm-plugin.version>1.8.1</maven-scm-plugin.version>
         <maven-invoker-plugin.version>1.8</maven-invoker-plugin.version>
 
         <!-- Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.sf.bluecove</groupId>
+                <artifactId>bluecove</artifactId>
+                <version>${bluecove.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- ===== -->
     <!-- BUILD -->
@@ -45,6 +59,16 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${bundle.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler.plugin.version}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-scm-plugin</artifactId>
@@ -61,6 +85,7 @@
 
     <modules>
         <module>bluecove-builder</module>
+        <module>bluecove-for-osgi</module>
     </modules>
 
 
