@@ -43,6 +43,7 @@
                 <configuration>
                     <goals>install</goals>
                     <profiles>bluecove</profiles>
+                    <checkoutDirectory>${project.build.directory}/bluecove-svn</checkoutDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -53,17 +54,42 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/bluecove-svn</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/resources/poms</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-invoker-plugin</artifactId>
                 <configuration>
                     <debug>false</debug>
-                    <projectsDirectory>${project.build.directory}/checkout</projectsDirectory>
+                    <projectsDirectory>${project.build.directory}/bluecove-svn</projectsDirectory>
                     <localRepositoryPath>${settings.localRepository}</localRepositoryPath>
                     <pomIncludes>
                         <pomInclude>pom.xml</pomInclude>
                     </pomIncludes>
-                    <ignoreFailures>true</ignoreFailures>
+                    <ignoreFailures>false</ignoreFailures>
                     <goals>
                         <goal>install</goal>
                     </goals>
